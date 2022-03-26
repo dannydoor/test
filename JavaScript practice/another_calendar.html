@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    td,
+    th {
+      border: 1px solid black;
+      padding: 3px;
+      text-align: center;
+    }
+
+    th {
+      font-weight: bold;
+      background-color: #E6E6E6;
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="calendar"></div>
+
+  <script>
+    function createCalendar(elem, year, month) {
+      let d = new Date(year, month-1);
+      let str = `<tr> <th>MO</th> <th>TU</th> <th>WE</th> <th>TH</th> <th>FR</th> <th>SA</th> <th>SU</th> </tr>`
+      let d1 = d.getDay()
+      let day = d1 ? d1 : d1 + 7;
+      str += ' <tr>';
+
+      for (let i = 1; i < day; i++) str += ' <td></td>';
+      
+      while(true) {
+          d1 = d.getDay()
+          day = d1 ? d1 : d1 + 7;
+          
+          d.setDate(d.getDate()+1);
+          if (d.getMonth() != month) {
+              str += ' <td>' + (d.getDate()-1) + '</td>';
+              if (day == 7) str += '</tr> <tr>';
+          } else {
+              str += ' <td>' + d.getDate(d.setFullYear(year, month, 0)) + '</td>';
+              for (let i = day + 1; i <= 7; i++) str += ' <td></td>';
+              str += '</tr>'
+              break;
+          }
+      }
+      
+      str = '<table>' + str + '</table>'
+      elem.innerHTML = str;
+    }
+
+    createCalendar(calendar, 2022, 4);
+  </script>
+
+</body>
+</html>
