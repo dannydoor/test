@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+
+  <h1 id="clickme"> <span id="closed">▶</span><span id="opened" hidden>▼</span> Sweeties (click me)!</h1>
+  <ul id="list" hidden>
+    <li>Cake</li>
+    <li>Donut</li>
+    <li>Honey</li>
+  </ul>
+
+  <script>
+      document.getElementById('clickme').onclick = function () {
+          document.getElementById('closed').toggleAttribute('hidden');
+          document.getElementById('opened').toggleAttribute('hidden');
+          document.getElementById('list').toggleAttribute('hidden');
+      }
+  </script>
+
+</body>
+</html>
