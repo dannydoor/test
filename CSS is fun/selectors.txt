@@ -1,0 +1,67 @@
+Selector!
+
+What is the selector?
+
+Type Selector = HTML tag selector (ex. p, div, blockquote);
+
+Class Selector = HTML styling에 중요함.
+-> dot(.) is added before class name unlike HTML document.
+여러 개의 요소에 동일한 스타일을 적용하고 싶을 때!
+*EFFICIENT!*
+
+CLASS는 여러 개를 가질 수 있음. 
+또, HTML에선 각각의 class name을 반드시 띄워줘야 함
+**중요한 법칙 클래스 두 개가 공백없이 붙어있으면 하나의 클래스로 인식.
+
+ID Selector = ID : 신분증. ID는 반드시 유니크해야 함.
+ID는 CSS에서 #이 붙음 (id="Kimbug => #Kimbug);
+
+Child Selector = parent > child
+
+Descendant Combinator = parent descendants **그냥 공백!
+
+Sibling Selectors 
+=> sibling ~ sibling : 어떤 식별자 다음에 따라오는 모든 형제 요소들
+	 sibling + sibling : 그 다음에 오는 하나의 형제 요소.
+
+Structural Pseudo-classes : 구조적 "가상" 클래스
+가상 : 어떤 조건을 만족할 때 사용할 수 있는 클래스
+
+li:first-child => li이자 firstchild인 친구... : 앞뒤로 반드시 붙이기
+
+li:nth-child(3) => li이자 3번째 자식인 친구!
+
+li:nth-child(2n) => li 이자 짝수번째 자식인 친구
+처럼 활용도 가능!
+
+User Action Pseudo-classes : '동적' 가상 클래스
+:hover => 마우스를 올렸을 때
+:focus => 인풋을 눌러서 작성할 수 있는 상태가 됐을 때!
+:active => 마우스로 클릭하고 있을 때
+
+
+선택자 우선순위!!
+
+"Cascading" Style Sheet 이기 때문에 밑에 있는 스타일이
+위에 있는 스타일을 덮는다
+
+*더 중요한 rule;
+** Olympic같이 점수를 낸다!
+점수 높은 애를 많이 갖고 있는게 우선순위가 높다!
+
+동메달 : Type Selector
+은메달 : Class and Pseudo-class
+금메달 : ID Selector
+
+아무리 많은 클래스를 먹이더라도 ID 하나면 다 덮인다!
+
+.box p가 p보다 우선순위가 높다.
+
+점수합산 방식
+더 자신에게 해당되는게 많을수록 그 스타일을 먹을 가능성이 높다~
+
+RULE BREAKER!!
+
+1. Inline Style
+
+2. !important 이게 최강자
