@@ -1,0 +1,10 @@
+sectioning element = 단원
+sectioning element 내에는 반드시 heading 태그가 있어야 한다!!
+왜냐하면 단원의 제목이 있어야 하니까.
+
+페이지 구조 설계!!
+웹페이지의 구조적 설계.
+가장 먼저 해야 하는것 -> 구획 나누기!
+
+main은 한 페이지에 오직 하나
+but, main은 sectioning element가 아님.

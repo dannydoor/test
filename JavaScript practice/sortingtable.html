@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    table {
+       border-collapse: collapse;
+     }
+     th, td {
+       border: 1px solid black;
+       padding: 4px;
+     }
+     th {
+       cursor: pointer;
+     }
+     th:hover {
+       background: yellow;
+     }
+  </style>
+</head>
+
+<body>
+
+  <table id="grid">
+    <thead>
+      <tr>
+        <th data-type="number">Age</th>
+        <th data-type="string">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>5</td>
+        <td>John</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Pete</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Ann</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Eugene</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Ilya</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function sorter(type) {
+        if (type == "string") {
+            return function (a, b) {
+                let [aStr, bStr] = [a.lastElementChild.innerHTML, b.lastElementChild.innerHTML];
+                return aStr.localeCompare(bStr);
+            };
+        } else if (type == "number") {
+            return function numCompare(a, b) {
+                let [aNum, bNum] = [a.firstElementChild.innerHTML, b.firstElementChild.innerHTML];
+                return aNum - bNum;
+            };
+        }
+    }
+
+    function handler (event) {
+        if (!event.target.dataset.type) return;
+
+        let type = event.target.dataset.type;
+        let tbody = document.querySelector('tbody');
+        let elem = Array.from(tbody.querySelectorAll('tr'));
+
+        elem.sort(sorter(type));
+
+        tbody.append(...elem);
+    }
+
+    document.querySelector('thead').onclick = handler;
+  </script>
+
+</body>
+</html>

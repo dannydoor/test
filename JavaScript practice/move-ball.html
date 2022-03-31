@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      overflow: hidden;
+      position: relative;
+    }
+    #ball {
+      position: absolute;
+      left: 0; /* relative to the closest positioned ancestor (field) */
+      top: 0;
+      transition: 1s all; /* CSS animation for left/top makes the ball fly */
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Click on a field to move the ball there.
+  <br> The ball should never leave the field.
+
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+  <script>
+      let ball = document.getElementById('ball');
+
+      function ImageSpec (elem) {
+          let elemRect = elem.getBoundingClientRect();
+          elem.style.position = 'absolute'
+          
+          return {
+              width : elemRect.offsetWidth/2,
+              height : elemRect.offsetHeight/2,
+              left : elemRect.left,
+              top : elemRect.top,
+          }
+      }
+
+      let ballSpec = ImageSpec(ball);
+
+      function moveBall(event) { 
+          let [eventTop, eventLeft] = [event.clientX - ballSpec.width, event.clientY - ballSpec.height];
+          let [eventBottom, eventRight] = [event.clientX + ballSpec.width, event.clientY + ballSpec.height];
+          if (eventTop < this.top) ball.top = this.top;
+          if (eventLeft < this.left) ball.left = this.left;
+          if (eventBottom > this.bottom) ball.bottom = this.bottom;
+          if (eventRight > this.right) ball.right = this.right;
+          else [ball.top, ball.left] = [eventTop, eventLeft];
+      }
+
+      document.getElementById('field').addEventListener('click', moveBall);
+      
+  </script>
+</body>
+</html>

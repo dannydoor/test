@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      height: 2000px;
+      overflow: auto;
+    }
+
+    .tooltip {
+      /* some styles for the tooltip, you can use your own instead */
+      position: fixed;
+      padding: 10px 20px;
+      border: 1px solid #b3c9ce;
+      border-radius: 4px;
+      text-align: center;
+      font: italic 14px/1.3 sans-serif;
+      color: #333;
+      background: #fff;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa</p>
+  <p>LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa LaLaLa</p>
+
+  <button data-tooltip="the tooltip is longer than the element">Short button</button>
+  <button data-tooltip="HTML<br>tooltip">One more button</button>
+
+  <p>Scroll the page to make buttons appear on the top, check if the tooltips show up correctly.</p>
+
+
+  <script>
+      function createDiv() {
+          let div = document.createElement('div');
+          div.className = 'tooltip';
+          document.body.append(div);
+      }
+
+      function overHandler(event) {
+          let ttHTML = event.target.dataset.tooltip;
+          if (!ttHTML) return;
+
+          createDiv()
+          let div = document.querySelector('.tooltip');
+          div.innerHTML = ttHTML;
+
+          let coord = event.target.getBoundingClientRect();
+
+          let top = coord.top - div.offsetHeight - 5;
+          if (top < 0) {
+              top = coord.top + coord.height + 5;
+          }
+          
+          let left = coord.left + coord.width / 2 - div.offsetWidth / 2;
+          if (left < 0 ) left = 0;
+
+          div.style.left = left + 'px';
+          div.style.top = top + 'px';
+      }
+
+      function outHandler(event) {
+          let elem = document.querySelector('.tooltip');
+          if (elem) elem.remove();
+          else return;
+      }
+
+      document.body.addEventListener('mouseover', overHandler);
+      document.body.addEventListener('mouseout', outHandler);
+  </script>
+
+</body>
+</html>
